@@ -1,0 +1,30 @@
+version: '2.3'
+
+# if 'docker-compose run' is used
+# do not forget '--service-ports'!
+
+services:
+    number_recognition:
+      image: mmis/deep-oc-number_recognition
+      ports:
+        - 5000:5000
+        - 6006:6006
+      entrypoint: ["deepaas-run", "--listen-ip=0.0.0.0"]
+
+
+    number_recognition-gpu:
+      image: mmis/deep-oc-number_recognition:gpu
+      runtime: nvidia
+      ports:
+        - 5000:5000
+        - 6006:6006
+      entrypoint: ["deepaas-run", "--listen-ip=0.0.0.0"]
+
+
+    number_recognition-rclone:
+      extends:
+        service: number_recognition
+      volumes:
+        - $HOME/.config/rclone:/srv/.rclone
+      environment:
+        - RCLONE_CONFIG=/srv/.rclone/rclone.conf
