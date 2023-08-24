@@ -5,7 +5,7 @@ version: '2.3'
 
 services:
     number_recognition:
-      image: mmis/deep-oc-number_recognition
+      image: microstep/deep-oc-number_recognition
       ports:
         - 5000:5000
         - 6006:6006
@@ -13,7 +13,7 @@ services:
 
 
     number_recognition-gpu:
-      image: mmis/deep-oc-number_recognition:gpu
+      image: microstep/deep-oc-number_recognition:gpu
       runtime: nvidia
       ports:
         - 5000:5000

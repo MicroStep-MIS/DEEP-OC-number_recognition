@@ -15,10 +15,10 @@ To run the Docker container directly from Docker Hub and start using the API
 simply run the following command:
 
 ```bash
-$ docker run -ti -p 5000:5000 -p 6006:6006 mmis/deep-oc-number_recognition
+$ docker run -ti -p 5000:5000 -p 6006:6006 microstep/deep-oc-number_recognition
 ```
 
-This command will pull the Docker container from the Docker Hub [mmis](https://hub.docker.com/u/mmis/) repository and start the default command (deepaas-run --listen-ip=0.0.0.0).
+This command will pull the Docker container from the Docker Hub [microstep](https://hub.docker.com/u/microstep/) repository and start the default command (deepaas-run --listen-ip=0.0.0.0).
 
 **N.B.** For either CPU-based or GPU-based images you can also use [udocker](https://github.com/indigo-dc/udocker).
 
@@ -40,8 +40,8 @@ If you want to build the container directly in your machine (because you want to
 ```bash
 git clone https://github.com/MicroStep-MIS/DEEP-OC-number_recognition
 cd DEEP-OC-number_recognition
-docker build -t mmis/deep-oc-number_recognition .
-docker run -ti -p 5000:5000 -p 6006:6006 -p 8888:8888 mmis/deep-oc-number_recognition
+docker build -t microstep/deep-oc-number_recognition .
+docker run -ti -p 5000:5000 -p 6006:6006 -p 8888:8888 microstep/deep-oc-number_recognition
 ```
 
 These three steps will download the repository from GitHub and will build the Docker container locally on your machine. You can inspect and modify the `Dockerfile` in order to check what is going on. For instance, you can pass the `--debug=True` flag to the `deepaas-run` command, in order to enable the debug mode.

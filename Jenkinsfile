@@ -8,7 +8,7 @@ pipeline {
     }
 
     environment {
-        dockerhub_repo = "mmis/deep-oc-number_recognition"
+        dockerhub_repo = "microstep/deep-oc-number_recognition"
         base_cpu_tag = "2.9.1"
         base_gpu_tag = "2.9.1-gpu"
     }
