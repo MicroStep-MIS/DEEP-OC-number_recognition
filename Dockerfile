@@ -17,18 +17,23 @@ ARG tag=2.9.1
 # Base image, e.g. tensorflow/tensorflow:2.9.1
 FROM tensorflow/tensorflow:${tag}
 
+RUN apt-get update && apt-get install libgl1 -y
+RUN apt-get install libglib2.0-0 -y
+RUN python -m pip install opencv-python
+RUN python -m pip install scikit-learn
+
 LABEL maintainer='MicroStep-MIS'
 LABEL version='0.0.1'
 # number recognition
 
 # What user branch to clone [!]
-ARG branch=master
+ARG branch=test_20230904 #master
 
 # If to install JupyterLab
 ARG jlab=true
 
 # Oneclient version, has to match OneData Provider and Linux version
-ARG oneclient_ver=19.02.0.rc2-1~bionic
+ARG oneclient_ver=21.02.3-1~focal #19.02.0.rc2-1~bionic
 
 # Install Ubuntu packages
 # - gcc is needed in Pytorch images because deepaas installation might break otherwise (see docs) (it is already installed in tensorflow images)
@@ -64,8 +69,8 @@ RUN curl -O https://downloads.rclone.org/rclone-current-linux-amd64.deb && \
 
 ENV RCLONE_CONFIG=/srv/.rclone/rclone.conf
 
-# INSTALL oneclient for ONEDATA
-RUN curl -sS  http://get.onedata.org/oneclient-1902.sh  | bash -s -- oneclient="$oneclient_ver" && \
+# INSTALL oneclient for ONEDATA, was http://get.onedata.org/oneclient-1902.sh
+RUN curl -sS  http://get.onedata.org/oneclient-2102.sh  | bash -s -- oneclient="$oneclient_ver" && \
     mkdir -p /mnt/onedata && \
     rm -rf /var/lib/apt/lists/*
 
